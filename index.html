@@ -1,0 +1,45 @@
+index.html
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Каталог</title>
+  <style>
+    body { font-family: system-ui; padding: 16px; margin:0; }
+    h2 { margin: 0 0 12px; }
+    .card { border:1px solid #ddd; border-radius:14px; padding:14px; margin-bottom:12px; }
+    button { padding:10px 12px; border-radius:12px; border:0; cursor:pointer; background:#2ea6ff; color:white; font-weight:700; }
+  </style>
+</head>
+
+<body>
+  <h2>Каталог товаров</h2>
+
+  <div class="card">
+    <h3>Услуга 1</h3>
+    <p>Описание услуги</p>
+    <p><b>1500 ₽</b></p>
+    <button onclick="order('Услуга 1')">Заказать</button>
+  </div>
+
+  <div class="card">
+    <h3>Услуга 2</h3>
+    <p>Описание услуги</p>
+    <p><b>2500 ₽</b></p>
+    <button onclick="order('Услуга 2')">Заказать</button>
+  </div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    function order(name){
+      tg.sendData("Заказ: " + name);
+      tg.showAlert("✅ Заказ отправлен!");
+    }
+  </script>
+
+</body>
+</html>
