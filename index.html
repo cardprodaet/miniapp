@@ -37,14 +37,22 @@ index.html
     <button onclick="order('Услуга 2')">Заказать</button>
   </div> 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
+ <script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
 
-    function order(name){
-      tg.sendData("Заказ: " + name);
-      tg.showAlert("✅ Заказ отправлен!");
-    }
+  // ✅ твой username
+  const SELLER_USERNAME = "gvozdev_vladislav";
+
+  function order(name){
+    const text = `Здравствуйте! Хочу заказать: ${name}`;
+    const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+
+    // ✅ открываем чат с тобой
+    tg.openTelegramLink(link);
+  }
+</script>
+
   </script>
 
 </body>
