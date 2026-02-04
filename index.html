@@ -90,6 +90,7 @@ button:active{
   color:#0b1020;
   font-weight:900;
   font-size:15px;
+  box-shadow:0 14px 30px rgba(255,187,110,.25);
 }
 </style>
 </head>
@@ -147,10 +148,12 @@ button:active{
     const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
     tg.openTelegramLink(link);
 }    
-  function freeAudit(){
-  const text = "Здравствуйте! Хочу получить бесплатную диагностику магазина WB/Ozon.";
+ function freeAudit(){
+  const text = "Здравствуйте! Хочу бесплатную диагностику магазина WB/Ozon. Подскажите, пожалуйста, есть ли ещё места на этой неделе?";
   const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
   tg.openTelegramLink(link);
+}
+
 }
   
 
@@ -165,7 +168,7 @@ button:active{
   <button onclick="openManager()">💬 Написать менеджеру</button>
 </div>
 <div class="free">
-  <button onclick="freeAudit()">🎁 Получить бесплатную диагностику</button>
+  <button onclick="freeAudit()">🎁 Бесплатная диагностика (3 места в неделю)</button>
 </div>
 </body>
 </html>
