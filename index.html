@@ -10,30 +10,38 @@ index.html
     h2 { margin: 0 0 12px; }
     .card { border:1px solid #ddd; border-radius:14px; padding:14px; margin-bottom:12px; }
     button { padding:10px 12px; border-radius:12px; border:0; cursor:pointer; background:#2ea6ff; color:white; font-weight:700; }
-  </style>
+.pic{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-bottom:10px;
+}
+</style>
 </head>
 
 <body>
   <h2>Каталог товаров</h2>
 
   <div class="card">
-    <h3>АУДИТ МАГАЗИНА</h3>
-    <p>Описание услуги</p>
-    <p><b>1500 ₽</b></p>
+    <h3>АУДИТ МАГАЗИНА</h3> 
+    <img src="2026-02-04 12.23.39Vladik.jpg" class="pic">
+    <p>Разберу ваш кабинет и найду точки роста</p>
+    <p><b>по запросу</b></p>
     <button onclick="order('Услуга 1')">Заказать</button>
   </div>
 
   <div class="card">
     <h3>КОНСУЛЬТАЦИЯ</h3>
-    <p>Описание услуги</p>
-    <p><b>2500 ₽</b></p>
+    <p>Разберу ваш кабинет и найду точки роста</p>
+    <p><b>по запросу</b></p>
     <button onclick="order('Услуга 2')">Заказать</button>
   </div>
 
   <div class="card">
     <h3>ПРОДВИЖЕНИЕ ВНУТРЕНЕЙ РЕКЛАМЫ</h3>
     <p>Описание услуги</p>
-    <p><b>2500 ₽</b></p>
+    <p><b>по запросу</b></p>
     <button onclick="order('Услуга 2')">Заказать</button>
   </div> 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
