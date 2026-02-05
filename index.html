@@ -5,7 +5,7 @@ index.html
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Каталог</title>
-   <style> 
+
 <style>
 :root{
   --bg:#f4f6fb;
@@ -33,12 +33,22 @@ h2{
   font-size:24px;
 }
 
+.grid{
+  display:grid;
+  gap:14px;
+}
+
+@media (min-width:600px){
+  .grid{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
 .card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:var(--radius);
   padding:16px;
-  margin-bottom:16px;
   box-shadow:var(--shadow);
 }
 
@@ -104,11 +114,11 @@ button:active{
   border:none;
   color:#0b1020;
   font-weight:900;
-  box-shadow:0 14px 30px rgba(255,187,110,.25)
-
+  box-shadow:0 14px 30px rgba(255,187,110,.25);
 }
 </style>
 </head>
+
 
 <body>
  <h2>Каталог товаров</h2>
