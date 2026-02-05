@@ -5,7 +5,6 @@ index.html
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Каталог</title>
-
 <style>
 :root{
   --bg:#f4f6fb;
@@ -116,18 +115,189 @@ button:active{
   font-weight:900;
   box-shadow:0 14px 30px rgba(255,187,110,.25);
 }
+  /* ✅ Сетка карточек */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap:16px;
+}
+
+/* На телефоне — обратно в 1 колонку */
+@media (max-width: 560px){
+  .grid{ grid-template-columns: 1fr; }
+}
+  /* ===== Premium UI tweaks ===== */
+.header{
+  margin: 0 0 14px;
+}
+.badges{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+.badge{
+  font-size:12px;
+  padding:8px 10px;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.7);
+}
+
+.card{
+  overflow:hidden;
+}
+
+.pic{
+  height:170px;          /* чуть компактнее и дороже смотрится */
+}
+
+.price{
+  font-weight:900;
+  font-size:18px;
+  margin: 6px 0 12px;
+  color: var(--text);
+}
+
+.btn-secondary{
+  background:#ffffff;
+  color:var(--text);
+  border:1px solid var(--border);
+  box-shadow:none;
+}
+
+.btn-secondary:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 18px rgba(0,0,0,.08);
+}
+
+.bottom-actions{
+  position: sticky;
+  bottom: 12px;
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding-bottom: 8px;
+}
+  /* ===== ПРЕМИУМ-ШАПКА ===== */
+.header{
+  margin-bottom:24px;
+}
+
+.header h1{
+  margin:8px 0 6px;
+  font-size:26px;
+}
+
+.subtitle{
+  margin:0;
+  color:var(--muted);
+  font-size:14px;
+}
+
+.badge{
+  display:inline-block;
+  background:#fff7ed;
+  color:#9a3412;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:600;
+  border:1px solid #fed7aa;
+}
+
+/* ===== СЕТКА ===== */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px;
+}
+
+@media (max-width:560px){
+  .grid{ grid-template-columns:1fr; }
+}
+
+/* ===== КАРТОЧКИ ===== */
+.card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.pic{
+  width:100%;
+  height:170px;
+  object-fit:cover;
+  border-radius:14px;
+  margin-bottom:12px;
+}
+
+/* Цена — крупнее и ближе к кнопке */
+.price{
+  font-size:20px;
+  font-weight:800;
+  margin:4px 0 12px;
+}
+
+/* ===== КНОПКИ ===== */
+
+/* основная кнопка */
+button{
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:0;
+  cursor:pointer;
+  font-weight:800;
+  font-size:15px;
+  background:linear-gradient(135deg,var(--accent),#5cc2ff);
+  color:white;
+  transition: all .25s ease;
+  box-shadow:0 10px 20px rgba(46,166,255,.25);
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 28px rgba(46,166,255,.35);
+}
+
+button:active{
+  transform:translateY(1px);
+}
+
+/* вторичная кнопка */
+.manager button{
+  background:white;
+  color:var(--text);
+  border:1px solid var(--border);
+  box-shadow:none;
+}
+
+/* акцентная кнопка */
+.free button{
+  background:linear-gradient(135deg,#ffd36e,#ff9f6e);
+  color:#0b1020;
+  font-weight:900;
+  box-shadow:0 14px 30px rgba(255,187,110,.25);
+}
 </style>
 </head>
 
 
 <body>
- <h2>Каталог товаров</h2>
+<div class="header">
+  <h2>Каталог услуг</h2>
+  <div class="badges">
+    <div class="badge">WB / Ozon • аудит и рост</div>
+    <div class="badge">🎁 Диагностика: 3 места/нед</div>
+  </div>
+</div>
 <div class="grid">
 <div class="card">
   <h3>Аудит магазина WB / Ozon</h3>
   <img src="audit.jpg" class="pic">
   <p>Найду, почему нет роста продаж и дам план действий на 14 дней.</p>
-  <p><b>6 900 ₽</b></p>
+<p class="price">6 900 ₽</p>
   <button onclick="order('Аудит магазина WB/Ozon — 6 900 ₽')">Записаться</button>
 </div>
 
@@ -135,7 +305,7 @@ button:active{
   <h3>Упаковка карточки товара</h3>
   <img src="card.jpg" class="pic">
   <p>SEO + описание + структура, чтобы карточка продавала лучше конкурентов.</p>
-  <p><b>4 900 ₽</b></p>
+  <p class="price">6 900 ₽</p>
   <button onclick="order('Упаковка карточки товара — 4 900 ₽')">Записаться</button>
 </div>
 
@@ -143,7 +313,7 @@ button:active{
   <h3>Настройка рекламы WB / Ozon</h3>
   <img src="ads.jpg" class="pic">
   <p>Запущу рекламу без слива бюджета, с фокусом на прибыль.</p>
-  <p><b>9 900 ₽</b></p>
+  <p class="price">6 900 ₽</p>
   <button onclick="order('Настройка рекламы WB/Ozon — 9 900 ₽')">Записаться</button>
 </div>
 
@@ -151,7 +321,7 @@ button:active{
   <h3>Сопровождение 30 дней</h3>
   <img src="support.jpg" class="pic">
   <p>Полное ведение магазина: стратегия, реклама, рост продаж и контроль KPI.</p>
-  <p><b>29 900 ₽</b></p>
+<p class="price">6 900 ₽</p>
   <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
 </div>
 
