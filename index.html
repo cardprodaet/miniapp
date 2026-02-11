@@ -269,18 +269,51 @@ button:active{
   gap: 10px;
   margin-top: 18px;
 }
+    /* ===== Блок эксперта ===== */
+.expert{
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.expert-photo{
+  width:64px;
+  height:64px;
+  border-radius:16px;
+  object-fit:cover;
+  box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.expert-info h1{
+  margin:0;
+  font-size:20px;
+}
+
+.subtitle{
+  margin:4px 0 6px;
+  color:var(--muted);
+  font-size:13px;
+}
   </style>
 </head>
 
 <body>
 
-  <div class="header">
-    <h2>Каталог услуг</h2>
+  <div class="header expert">
+  <img src="expert.jpg" class="expert-photo">
+
+  <div class="expert-info">
+    <h1>Владислав Гвоздев</h1>
+    <p class="subtitle">Эксперт по росту продаж на WB и Ozon</p>
+
     <div class="badges">
-      <div class="badge">WB / Ozon • аудит и рост</div>
+      <div class="badge">7+ лет в e-commerce</div>
+      <div class="badge">150+ магазинов в работе</div>
       <div class="badge">🎁 Диагностика: 3 места/нед</div>
     </div>
   </div>
+</div>
+
 
   <div class="grid">
 
