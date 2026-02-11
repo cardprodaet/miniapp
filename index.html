@@ -46,6 +46,7 @@
       object-fit:cover;
       box-shadow:0 8px 20px rgba(0,0,0,.15);
       flex:0 0 auto;
+      background:#fff;
     }
 
     .expert-info h1{
@@ -78,7 +79,7 @@
       white-space:nowrap;
     }
 
-    /* ===== Сетка ===== */
+    /* ===== Сетка услуг ===== */
     .grid{
       display:grid;
       gap:16px;
@@ -152,6 +153,7 @@
       background:radial-gradient(circle at 50% -20%, rgba(255,255,255,.4), transparent 60%);
       opacity:0;
       transition:.3s;
+      pointer-events:none;
     }
 
     button:hover::after{ opacity:1; }
@@ -183,6 +185,64 @@
       color:#0b1020;
       font-weight:900;
       box-shadow:0 14px 30px rgba(255,187,110,.25);
+    }
+
+    /* ===== Как проходит работа ===== */
+    .steps{
+      margin-top:18px;
+      background: rgba(255,255,255,.65);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow: var(--shadow);
+    }
+
+    .steps h2{
+      margin:0 0 12px;
+      font-size:18px;
+    }
+
+    .steps-grid{
+      display:grid;
+      gap:12px;
+    }
+
+    @media (min-width:600px){
+      .steps-grid{
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .step{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+    }
+
+    .step .num{
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:900;
+      background:#eef2ff;
+      margin-bottom:8px;
+      color:var(--text);
+    }
+
+    .step b{
+      display:block;
+      margin-bottom:6px;
+    }
+
+    .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
     }
 
     /* ===== Кейсы ===== */
@@ -243,99 +303,60 @@
       z-index: 9999;
     }
 
+    /* чтобы на айфонах/телефонах кнопки не упирались в системную панель */
     @supports (padding: env(safe-area-inset-bottom)) {
       .bottom-actions{
         bottom: calc(12px + env(safe-area-inset-bottom));
       }
-    }/* ===== Как проходит работа ===== */
-.steps{
-  margin-top:18px;
-  background: rgba(255,255,255,.65);
-  border:1px solid var(--border);
-  border-radius: var(--radius);
-  padding:16px;
-  box-shadow: var(--shadow);
-}
-
-.steps h2{
-  margin:0 0 12px;
-  font-size:18px;
-}
-
-.steps-grid{
-  display:grid;
-  gap:12px;
-}
-
-@media (min-width:600px){
-  .steps-grid{
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-.step{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px;
-}
-
-.step .num{
-  width:28px;
-  height:28px;
-  border-radius:10px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  background:#eef2ff;
-  margin-bottom:8px;
-}
-
-.step b{
-  display:block;
-  margin-bottom:6px;
-}
-
-.step p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.35;
-}
+    }
   </style>
 </head>
 
 <body>
 
   <!-- Шапка -->
- <div class="steps">
-  <h2>Как проходит работа</h2>
+  <div class="header expert">
+    <img src="expert.jpg" class="expert-photo" alt="">
 
-  <div class="steps-grid">
-    <div class="step">
-      <div class="num">1</div>
-      <b>Бесплатная диагностика</b>
-      <p>Разбираю магазин и показываю точки роста.</p>
-    </div>
+    <div class="expert-info">
+      <h1>Владислав Гвоздев</h1>
+      <p class="subtitle">Эксперт по росту продаж на WB и Ozon</p>
 
-    <div class="step">
-      <div class="num">2</div>
-      <b>План действий</b>
-      <p>Вы получаете чёткий план роста на 14–30 дней.</p>
-    </div>
-
-    <div class="step">
-      <div class="num">3</div>
-      <b>Запуск и контроль</b>
-      <p>Настраиваем рекламу, упаковку и выводим магазин в плюс.</p>
+      <div class="badges">
+        <div class="badge">7+ лет в e-commerce</div>
+        <div class="badge">150+ магазинов в работе</div>
+        <div class="badge">🎁 Диагностика: 3 места/нед</div>
+      </div>
     </div>
   </div>
-</div>
 
+  <!-- Как проходит работа -->
+  <div class="steps">
+    <h2>Как проходит работа</h2>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="num">1</div>
+        <b>Бесплатная диагностика</b>
+        <p>Разбираю магазин и показываю точки роста.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">2</div>
+        <b>План действий</b>
+        <p>Вы получаете чёткий план роста на 14–30 дней.</p>
+      </div>
+
+      <div class="step">
+        <div class="num">3</div>
+        <b>Запуск и контроль</b>
+        <p>Настраиваем рекламу, упаковку и выводим магазин в плюс.</p>
+      </div>
+    </div>
+  </div>
 
   <!-- Карточки -->
-  <div class="grid">
+  <div class="grid" style="margin-top:18px;">
     <div class="card">
       <h3>Аудит магазина WB / Ozon</h3>
       <img src="audit.jpg" class="pic" alt="">
@@ -368,39 +389,7 @@
       <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
     </div>
   </div>
- </div>
- </div>
 
-<div class="steps">
-  <h2>Как проходит работа</h2>
-
-  <div class="step">
-    <div class="step-num">1</div>
-    <div>
-      <b>Бесплатная диагностика</b>
-      <p>Разбираю магазин и показываю точки роста.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">2</div>
-    <div>
-      <b>План действий</b>
-      <p>Вы получаете чёткий план роста на 14–30 дней.</p>
-    </div>
-  </div>
-
-  <div class="step">
-    <div class="step-num">3</div>
-    <div>
-      <b>Запуск и контроль</b>
-      <p>Настраиваем рекламу, упаковку и выводим магазин в плюс.</p>
-    </div>
-  </div>
-</div>
-
-<!-- Кейсы -->
-<div class="cases">
   <!-- Кейсы -->
   <div class="cases">
     <h2>Результаты клиентов</h2>
