@@ -247,26 +247,92 @@
       .bottom-actions{
         bottom: calc(12px + env(safe-area-inset-bottom));
       }
-    }
+    }/* ===== Как проходит работа ===== */
+.steps{
+  margin-top:18px;
+  background: rgba(255,255,255,.65);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  padding:16px;
+  box-shadow: var(--shadow);
+}
+
+.steps h2{
+  margin:0 0 12px;
+  font-size:18px;
+}
+
+.steps-grid{
+  display:grid;
+  gap:12px;
+}
+
+@media (min-width:600px){
+  .steps-grid{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.step{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px;
+}
+
+.step .num{
+  width:28px;
+  height:28px;
+  border-radius:10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  background:#eef2ff;
+  margin-bottom:8px;
+}
+
+.step b{
+  display:block;
+  margin-bottom:6px;
+}
+
+.step p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
   </style>
 </head>
 
 <body>
 
   <!-- Шапка -->
-  <div class="header expert">
-    <img src="expert.jpg" class="expert-photo" alt="Эксперт">
-    <div class="expert-info">
-      <h1>Владислав Гвоздев</h1>
-      <p class="subtitle">Эксперт по росту продаж на WB и Ozon</p>
+ <div class="steps">
+  <h2>Как проходит работа</h2>
 
-      <div class="badges">
-        <div class="badge">7+ лет в e-commerce</div>
-        <div class="badge">150+ магазинов в работе</div>
-        <div class="badge">🎁 Диагностика: 3 места/нед</div>
-      </div>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="num">1</div>
+      <b>Бесплатная диагностика</b>
+      <p>Разбираю магазин и показываю точки роста.</p>
+    </div>
+
+    <div class="step">
+      <div class="num">2</div>
+      <b>План действий</b>
+      <p>Вы получаете чёткий план роста на 14–30 дней.</p>
+    </div>
+
+    <div class="step">
+      <div class="num">3</div>
+      <b>Запуск и контроль</b>
+      <p>Настраиваем рекламу, упаковку и выводим магазин в плюс.</p>
     </div>
   </div>
+</div>
+
 
   <!-- Карточки -->
   <div class="grid">
