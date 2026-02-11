@@ -1,385 +1,288 @@
-index.html
 <!doctype html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Каталог</title>
-<style>
-:root{
-  --bg:#f4f6fb;
-  --card:#ffffff;
-  --border:#e6e8f0;
-  --text:#1a1c24;
-  --muted:#6b7280;
-  --accent:#2ea6ff;
-  --radius:18px;
-  --shadow:0 10px 30px rgba(0,0,0,.08);
-}
 
-*{box-sizing:border-box}
+  <style>
+    :root{
+      --bg:#f4f6fb;
+      --card:#ffffff;
+      --border:#e6e8f0;
+      --text:#1a1c24;
+      --muted:#6b7280;
+      --accent:#2ea6ff;
+      --radius:18px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+    }
 
-body{
-  margin:0;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  background:var(--bg);
-  color:var(--text);
-  padding:18px;
-}
+    *{ box-sizing:border-box; }
 
-h2{
-  margin:0 0 18px;
-  font-size:24px;
-}
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--text);
+      padding:18px;
+    }
 
-.grid{
-  display:grid;
-  gap:14px;
-}
+    /* ===== Шапка ===== */
+    .header{
+      margin:0 0 16px;
+    }
+    .header h2{
+      margin:0 0 10px;
+      font-size:24px;
+    }
+    .badges{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .badge{
+      display:inline-block;
+      background:#fff7ed;
+      color:#9a3412;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:600;
+      border:1px solid #fed7aa;
+    }
 
-@media (min-width:600px){
-  .grid{
-    grid-template-columns:1fr 1fr;
-  }
-}
+    /* ===== Сетка ===== */
+    .grid{
+      display:grid;
+      gap:16px;
+    }
+    @media (min-width:600px){
+      .grid{
+        grid-template-columns:1fr 1fr;
+      }
+    }
 
-.card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:16px;
-  box-shadow:var(--shadow);
-}
+    /* ===== Карточки ===== */
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
 
-.card h3{
-  margin:0 0 8px;
-  font-size:18px;
-}
+    .card h3{
+      margin:0 0 10px;
+      font-size:18px;
+    }
 
-.card p{
-  margin:0 0 10px;
-  color:var(--muted);
-  line-height:1.4;
-}
+    .card p{
+      margin:0 0 10px;
+      color:var(--muted);
+      line-height:1.4;
+    }
 
-.pic{
-  width:100%;
-  height:190px;
-  object-fit:cover;
-  border-radius:16px;
-  margin-bottom:12px;
-}
+    .pic{
+      width:100%;
+      height:170px;
+      object-fit:cover;
+      border-radius:14px;
+      margin-bottom:12px;
+    }
 
-button{
-  width:100%;
-  padding:12px;
-  border-radius:16px;
-  border:0;
-  cursor:pointer;
-  font-weight:800;
-  font-size:15px;
-  background:linear-gradient(135deg,var(--accent),#5cc2ff);
-  color:white;
-  transition: all 0.25s ease;
-  box-shadow:0 10px 20px rgba(46,166,255,.25);
-}
+    .price{
+      font-size:20px;
+      font-weight:900;
+      margin:4px 0 12px;
+      color:var(--text);
+    }
 
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 28px rgba(46,166,255,.35);
-}
+    /* ===== Кнопки ===== */
+    button{
+      width:100%;
+      padding:12px;
+      border-radius:14px;
+      border:0;
+      cursor:pointer;
+      font-weight:800;
+      font-size:15px;
+      background:linear-gradient(135deg,var(--accent),#5cc2ff);
+      color:white;
+      transition: all .25s ease;
+      box-shadow:0 10px 20px rgba(46,166,255,.25);
+    }
 
-button:active{
-  transform:translateY(1px);
-}
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 28px rgba(46,166,255,.35);
+    }
 
-.manager{
-  margin-top:20px;
-}
+    button:active{
+      transform:translateY(1px);
+    }
 
-.manager button{
-  background:#eef2ff;
-  color:#1a1c24;
-  box-shadow:none;
-  border:1px solid var(--border);
-}
+    .manager{
+      margin-top:18px;
+    }
+    .manager button{
+      background:white;
+      color:var(--text);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+    .manager button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 10px 18px rgba(0,0,0,.08);
+    }
 
-.free{
-  margin-top:12px;
-}
+    .free{
+      margin-top:12px;
+    }
+    .free button{
+      background:linear-gradient(135deg,#ffd36e,#ff9f6e);
+      border:none;
+      color:#0b1020;
+      font-weight:900;
+      box-shadow:0 14px 30px rgba(255,187,110,.25);
+    }
 
-.free button{
-  background:linear-gradient(135deg,#ffd36e,#ff9f6e);
-  border:none;
-  color:#0b1020;
-  font-weight:900;
-  box-shadow:0 14px 30px rgba(255,187,110,.25);
-}
-  /* ✅ Сетка карточек */
-.grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:16px;
-}
-
-/* На телефоне — обратно в 1 колонку */
-@media (max-width: 560px){
-  .grid{ grid-template-columns: 1fr; }
-}
-  /* ===== Premium UI tweaks ===== */
-.header{
-  margin: 0 0 14px;
-}
-.badges{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
-.badge{
-  font-size:12px;
-  padding:8px 10px;
-  border-radius:999px;
-  border:1px solid var(--border);
-  background:rgba(255,255,255,.7);
-}
-
-.card{
-  overflow:hidden;
-}
-
-.pic{
-  height:170px;          /* чуть компактнее и дороже смотрится */
-}
-
-.price{
-  font-weight:900;
-  font-size:18px;
-  margin: 6px 0 12px;
-  color: var(--text);
-}
-
-.btn-secondary{
-  background:#ffffff;
-  color:var(--text);
-  border:1px solid var(--border);
-  box-shadow:none;
-}
-
-.btn-secondary:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 18px rgba(0,0,0,.08);
-}
-
-.bottom-actions{
-  position: sticky;
-  bottom: 12px;
-  display: grid;
-  gap: 10px;
-  margin-top: 18px;
-  padding-bottom: 8px;
-}
-  /* ===== ПРЕМИУМ-ШАПКА ===== */
-.header{
-  margin-bottom:24px;
-}
-
-.header h1{
-  margin:8px 0 6px;
-  font-size:26px;
-}
-
-.subtitle{
-  margin:0;
-  color:var(--muted);
-  font-size:14px;
-}
-
-.badge{
-  display:inline-block;
-  background:#fff7ed;
-  color:#9a3412;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:600;
-  border:1px solid #fed7aa;
-}
-
-/* ===== СЕТКА ===== */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:16px;
-}
-
-@media (max-width:560px){
-  .grid{ grid-template-columns:1fr; }
-}
-
-/* ===== КАРТОЧКИ ===== */
-.card{
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-}
-
-.pic{
-  width:100%;
-  height:170px;
-  object-fit:cover;
-  border-radius:14px;
-  margin-bottom:12px;
-}
-
-/* Цена — крупнее и ближе к кнопке */
-.price{
-  font-size:20px;
-  font-weight:800;
-  margin:4px 0 12px;
-}
-
-/* ===== КНОПКИ ===== */
-
-/* основная кнопка */
-button{
-  width:100%;
-  padding:12px;
-  border-radius:14px;
-  border:0;
-  cursor:pointer;
-  font-weight:800;
-  font-size:15px;
-  background:linear-gradient(135deg,var(--accent),#5cc2ff);
-  color:white;
-  transition: all .25s ease;
-  box-shadow:0 10px 20px rgba(46,166,255,.25);
-}
-
-button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 16px 28px rgba(46,166,255,.35);
-}
-
-button:active{
-  transform:translateY(1px);
-}
-
-/* вторичная кнопка */
-.manager button{
-  background:white;
-  color:var(--text);
-  border:1px solid var(--border);
-  box-shadow:none;
-}
-
-/* акцентная кнопка */
-.free button{
-  background:linear-gradient(135deg,#ffd36e,#ff9f6e);
-  color:#0b1020;
-  font-weight:900;
-  box-shadow:0 14px 30px rgba(255,187,110,.25);
-}
-</style>
+    /* ===== Кейсы ===== */
+    .cases{
+      margin-top:18px;
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:14px;
+      box-shadow:var(--shadow);
+    }
+    .cases h2{
+      margin:0 0 10px;
+      font-size:18px;
+    }
+    .case{
+      background:white;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px;
+      margin-top:10px;
+    }
+    .case b{
+      display:block;
+      margin-bottom:6px;
+    }
+    .case p{
+      margin:0 0 6px;
+      color:var(--muted);
+    }
+  </style>
 </head>
 
-
 <body>
-<div class="header">
-  <h2>Каталог услуг</h2>
-  <div class="badges">
-    <div class="badge">WB / Ozon • аудит и рост</div>
-    <div class="badge">🎁 Диагностика: 3 места/нед</div>
+
+  <div class="header">
+    <h2>Каталог услуг</h2>
+    <div class="badges">
+      <div class="badge">WB / Ozon • аудит и рост</div>
+      <div class="badge">🎁 Диагностика: 3 места/нед</div>
+    </div>
   </div>
-</div>
-<div class="grid">
-<div class="card">
-  <h3>Аудит магазина WB / Ozon</h3>
-  <img src="audit.jpg" class="pic">
-  <p>Найду, почему нет роста продаж и дам план действий на 14 дней.</p>
-<p class="price">6 900 ₽</p>
-  <button onclick="order('Аудит магазина WB/Ozon — 6 900 ₽')">Записаться</button>
-</div>
 
-<div class="card">
-  <h3>Упаковка карточки товара</h3>
-  <img src="card.jpg" class="pic">
-  <p>SEO + описание + структура, чтобы карточка продавала лучше конкурентов.</p>
-  <p class="price">6 900 ₽</p>
-  <button onclick="order('Упаковка карточки товара — 4 900 ₽')">Записаться</button>
-</div>
+  <div class="grid">
 
-<div class="card">
-  <h3>Настройка рекламы WB / Ozon</h3>
-  <img src="ads.jpg" class="pic">
-  <p>Запущу рекламу без слива бюджета, с фокусом на прибыль.</p>
-  <p class="price">6 900 ₽</p>
-  <button onclick="order('Настройка рекламы WB/Ozon — 9 900 ₽')">Записаться</button>
-</div>
+    <div class="card">
+      <h3>Аудит магазина WB / Ozon</h3>
+      <img src="audit.jpg" class="pic" alt="">
+      <p>Найду, почему нет роста продаж и дам план действий на 14 дней.</p>
+      <p class="price">6 900 ₽</p>
+      <button onclick="order('Аудит магазина WB/Ozon — 6 900 ₽')">Записаться</button>
+    </div>
 
-<div class="card">
-  <h3>Сопровождение 30 дней</h3>
-  <img src="support.jpg" class="pic">
-  <p>Полное ведение магазина: стратегия, реклама, рост продаж и контроль KPI.</p>
-<p class="price">6 900 ₽</p>
-  <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
- </div>
+    <div class="card">
+      <h3>Упаковка карточки товара</h3>
+      <img src="card.jpg" class="pic" alt="">
+      <p>SEO + описание + структура, чтобы карточка продавала лучше конкурентов.</p>
+      <p class="price">4 900 ₽</p>
+      <button onclick="order('Упаковка карточки товара — 4 900 ₽')">Записаться</button>
+    </div>
 
-  </div>
+    <div class="card">
+      <h3>Настройка рекламы WB / Ozon</h3>
+      <img src="ads.jpg" class="pic" alt="">
+      <p>Запущу рекламу без слива бюджета, с фокусом на прибыль.</p>
+      <p class="price">9 900 ₽</p>
+      <button onclick="order('Настройка рекламы WB/Ozon — 9 900 ₽')">Записаться</button>
+    </div>
+
+    <div class="card">
+      <h3>Сопровождение 30 дней</h3>
+      <img src="support.jpg" class="pic" alt="">
+      <p>Полное ведение магазина: стратегия, реклама, рост продаж и контроль KPI.</p>
+      <p class="price">29 900 ₽</p>
+      <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
+    </div>
+
+  </div> <!-- /grid -->
+
   <div class="cases">
-   <h2>Результаты клиентов</h2>
+    <h2>Результаты клиентов</h2>
 
-   <div class="case">
-    <b>Ниша: посуда</b>
-    <p>Было: 120 000 ₽ в месяц</p>
-    <p>Стало: 380 000 ₽ за 6 недель</p>
-   </div>
+    <div class="case">
+      <b>Ниша: посуда</b>
+      <p>Было: 120 000 ₽ в месяц</p>
+      <p>Стало: 380 000 ₽ за 6 недель</p>
+    </div>
 
-   <div class="case">
-    <b>Ниша: косметика</b>
-   <p>Было: реклама в минус</p>
-    <p>Стало: ROI 3.2 за 14 дней</p>
-</div>
+    <div class="case">
+      <b>Ниша: косметика</b>
+      <p>Было: реклама в минус</p>
+      <p>Стало: ROI 3.2 за 14 дней</p>
+    </div>
 
-  <div class="case">
- <b>Ниша: одежда</b>
-   <p>Карточка не продавала</p>
-     <p>Вывели товар в ТОП и увеличили продажи в 4 раза</p>
- </div>
- </div>
+    <div class="case">
+      <b>Ниша: одежда</b>
+      <p>Карточка не продавала</p>
+      <p>Вывели товар в ТОП и увеличили продажи в 4 раза</p>
+    </div>
+  </div>
 
-<!-- Кнопка менеджеру -->
-<div class="manager">
-  <button onclick="openManager()">💬 Написать менеджеру</button>
-</div>
-<div class="free">
-  <button onclick="freeAudit()">🎁 Бесплатная диагностика (3 места в неделю)</button>
-</div>
- <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>
-const tg = window.Telegram.WebApp;
-tg.ready();
+  <!-- Telegram WebApp -->
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
 
-const SELLER_USERNAME = "gvozdev_vladislav";
+    const SELLER_USERNAME = "gvozdev_vladislav";
 
-function order(name){
-  const text = `Здравствуйте! Хочу заказать: ${name}`;
-  const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-  tg.openTelegramLink(link);
-}
+    function order(name){
+      const text = `Здравствуйте! Хочу заказать: ${name}`;
+      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+      tg.openTelegramLink(link);
+    }
 
-function openManager(){
-  const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
-  const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-  tg.openTelegramLink(link);
-}
+    function openManager(){
+      const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
+      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+      tg.openTelegramLink(link);
+    }
 
-function freeAudit(){
-  const text = "Здравствуйте! Хочу бесплатную диагностику магазина WB/Ozon. Подскажите, пожалуйста, есть ли ещё места на этой неделе?";
-  const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-  tg.openTelegramLink(link);
-}
-</script>
-  
+    function freeAudit(){
+      const text = "Здравствуйте! Хочу бесплатную диагностику магазина WB/Ozon. Подскажите, пожалуйста, есть ли ещё места на этой неделе?";
+      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+      tg.openTelegramLink(link);
+    }
+  </script>
+
+  <!-- Кнопки снизу -->
+  <div class="manager">
+    <button onclick="openManager()">💬 Написать менеджеру</button>
+  </div>
+
+  <div class="free">
+    <button onclick="freeAudit()">🎁 Бесплатная диагностика (3 места в неделю)</button>
+  </div>
+
 </body>
 </html>
