@@ -102,27 +102,43 @@
 
     /* ===== Кнопки ===== */
     button{
-      width:100%;
-      padding:12px;
-      border-radius:14px;
-      border:0;
-      cursor:pointer;
-      font-weight:800;
-      font-size:15px;
-      background:linear-gradient(135deg,var(--accent),#5cc2ff);
-      color:white;
-      transition: all .25s ease;
-      box-shadow:0 10px 20px rgba(46,166,255,.25);
-    }
+  width:100%;
+  padding:12px;
+  border-radius:14px;
+  border:0;
+  cursor:pointer;
+  font-weight:800;
+  font-size:15px;
+  background:linear-gradient(135deg,var(--accent),#5cc2ff);
+  color:white;
+  transition: all .25s ease;
+  box-shadow:0 10px 20px rgba(46,166,255,.25);
+  position:relative;
+  overflow:hidden;
+}
 
-    button:hover{
-      transform:translateY(-2px);
-      box-shadow:0 16px 28px rgba(46,166,255,.35);
-    }
+/* мягкое свечение при наведении */
+button::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% -20%, rgba(255,255,255,.4), transparent 60%);
+  opacity:0;
+  transition:.3s;
+}
 
-    button:active{
-      transform:translateY(1px);
-    }
+button:hover::after{
+  opacity:1;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 28px rgba(46,166,255,.35);
+}
+
+button:active{
+  transform:translateY(1px) scale(.98);
+}
 
     .manager{
       margin-top:18px;
