@@ -177,6 +177,31 @@
       margin:0 0 6px;
       color:var(--muted);
     }
+    /* ===== Липкая панель кнопок ===== */
+.bottom-actions{
+  position: sticky;
+  bottom: 12px;
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 12px;
+  border-radius: 18px;
+  background: rgba(244, 246, 251, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(230, 232, 240, 0.8);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* ===== Кейсы — чуть “дороже” ===== */
+.case{
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.case p{
+  color: var(--text);
+  opacity: .82;
+}
   </style>
 </head>
 
