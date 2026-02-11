@@ -294,9 +294,62 @@ button:active{
   color:var(--muted);
   font-size:13px;
 }
+    /* ===== ШАГ 4: фиксируем нижние кнопки ===== */
+.bottom-actions{
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+
+  display: grid;
+  gap: 10px;
+
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 14px 40px rgba(0,0,0,.12);
+
+  z-index: 9999;
+}
+
+/* чтобы на айфонах/телефонах кнопки не упирались в системную панель */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .bottom-actions{
+    bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+}
+
+/* чтобы контент НЕ прятался под фикс-кнопками */
+body{
+  padding-bottom: 160px;
+}
+    /* ===== КЕЙСЫ КЛИЕНТОВ ===== */
+.cases{
+  margin-top: 18px;
+}
+
+.cases h2{
+  font-size:18px;
+  margin-bottom:10px;
+}
+
+.case{
+  background:#ffffff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:10px;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+}
+
+.case b{
+  display:block;
+  margin-bottom:4px;
+}
   </style>
 </head>
-
 <body>
 
   <div class="header expert">
