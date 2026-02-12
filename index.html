@@ -308,7 +308,49 @@
       .bottom-actions{
         bottom: calc(12px + env(safe-area-inset-bottom));
       }
-    }
+    }/* ===== Почему мне доверяют ===== */
+.trust{
+  margin-top:18px;
+  padding:16px;
+  background:rgba(255,255,255,.65);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+.trust h2{
+  margin:0 0 12px;
+  font-size:18px;
+}
+
+.trust-grid{
+  display:grid;
+  gap:12px;
+}
+
+@media (min-width:600px){
+  .trust-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+.trust-item{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+}
+
+.trust-item b{
+  display:block;
+  margin-bottom:6px;
+}
+
+.trust-item p{
+  margin:0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.35;
+}
   </style>
 </head>
 
@@ -389,7 +431,31 @@
       <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
     </div>
   </div>
+<div class="trust">
+  <h2>Почему мне доверяют</h2>
 
+  <div class="trust-grid">
+    <div class="trust-item">
+      <b>Без воды</b>
+      <p>Только конкретные действия, цифры и понятный план.</p>
+    </div>
+
+    <div class="trust-item">
+      <b>Опора на аналитику</b>
+      <p>Решения на основе отчётов, карточек, рекламы и юнит-экономики.</p>
+    </div>
+
+    <div class="trust-item">
+      <b>Быстрые улучшения</b>
+      <p>Первые результаты обычно видно уже в первые 7–14 дней.</p>
+    </div>
+
+    <div class="trust-item">
+      <b>Фокус на прибыль</b>
+      <p>Не “просто продажи”, а рост маржи и контроль расходов.</p>
+    </div>
+  </div>
+</div>
   <!-- Кейсы -->
   <div class="cases">
     <h2>Результаты клиентов</h2>
