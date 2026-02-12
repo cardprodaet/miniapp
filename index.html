@@ -540,11 +540,14 @@
 
     const SELLER_USERNAME = "gvozdev_vladislav";
 
-    function order(name){
-      const text = `Здравствуйте! Хочу заказать: ${name}`;
-      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-      tg.openTelegramLink(link);
-    }
+   function order(name){
+  const text = `Здравствуйте! Хочу заказать: ${name}`;
+  const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+  tg.openTelegramLink(link);
+
+  // отправка заявки в таблицу
+  fetch("https://script.google.com/macros/s/AKfycbyqOWc8riVxGGRTfrZm1zJTETKpsH0hr9x0pN29LkWFkARDCpGQ4CXAPVViFifRdSSC/exec?service=" + encodeURIComponent(name));
+}
 
     function openManager(){
       const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
