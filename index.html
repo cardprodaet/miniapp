@@ -351,6 +351,40 @@
   font-size:13px;
   line-height:1.35;
 }
+  /* ===== Отзывы ===== */
+.reviews{
+  margin-top:18px;
+  padding:16px;
+  background:rgba(255,255,255,.65);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+.reviews h2{
+  margin:0 0 12px;
+  font-size:18px;
+}
+
+.review{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:12px 14px;
+  margin-bottom:10px;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+}
+
+.review p{
+  margin:0 0 8px;
+  font-size:14px;
+  line-height:1.4;
+}
+
+.review span{
+  font-size:12px;
+  color:var(--muted);
+}
   </style>
 </head>
 
@@ -478,6 +512,25 @@
       <p>Вывели товар в ТОП и увеличили продажи в 4 раза</p>
     </div>
   </div>
+  <!-- Отзывы -->
+<div class="reviews">
+  <h2>Отзывы клиентов</h2>
+
+  <div class="review">
+    <p>“После аудита продажи выросли почти в 3 раза за месяц. Всё разложено по шагам, без воды.”</p>
+    <span>— Алексей, ниша: посуда</span>
+  </div>
+
+  <div class="review">
+    <p>“Реклама наконец вышла в плюс. До этого два месяца просто сливали бюджет.”</p>
+    <span>— Марина, ниша: косметика</span>
+  </div>
+
+  <div class="review">
+    <p>“Карточку полностью переделали, товар зашёл в топ и начали идти стабильные заказы.”</p>
+    <span>— Игорь, ниша: одежда</span>
+  </div>
+</div>
 
   <!-- Telegram WebApp -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
