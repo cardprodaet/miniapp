@@ -370,14 +370,14 @@
     return { id: u.id || "", name, username };
   }
 
-  function sendLead(serviceName){
-  const user = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
-  const name = user ? (user.first_name || "") : "";
+ function sendLead(serviceName){
+  const name = "Тестовое имя";
 
   const url = `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
 
   fetch(url, { method: "GET", mode: "no-cors" }).catch(()=>{});
 }
+
 
 
   function order(name){
