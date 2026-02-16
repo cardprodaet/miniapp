@@ -29,9 +29,7 @@
     }
 
     /* ===== Шапка (эксперт) ===== */
-    .header{
-      margin:0 0 16px;
-    }
+    .header{ margin:0 0 16px; }
 
     .expert{
       display:flex;
@@ -84,11 +82,8 @@
       display:grid;
       gap:16px;
     }
-
     @media (min-width:600px){
-      .grid{
-        grid-template-columns:1fr 1fr;
-      }
+      .grid{ grid-template-columns:1fr 1fr; }
     }
 
     /* ===== Карточки ===== */
@@ -208,9 +203,7 @@
     }
 
     @media (min-width:600px){
-      .steps-grid{
-        grid-template-columns: 1fr 1fr 1fr;
-      }
+      .steps-grid{ grid-template-columns: 1fr 1fr 1fr; }
     }
 
     .step{
@@ -233,12 +226,49 @@
       color:var(--text);
     }
 
-    .step b{
-      display:block;
-      margin-bottom:6px;
-    }
+    .step b{ display:block; margin-bottom:6px; }
 
     .step p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    /* ===== Почему мне доверяют ===== */
+    .trust{
+      margin-top:18px;
+      padding:16px;
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .trust h2{
+      margin:0 0 12px;
+      font-size:18px;
+    }
+
+    .trust-grid{
+      display:grid;
+      gap:12px;
+    }
+
+    @media (min-width:600px){
+      .trust-grid{ grid-template-columns:1fr 1fr; }
+    }
+
+    .trust-item{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 14px;
+    }
+
+    .trust-item b{ display:block; margin-bottom:6px; }
+
+    .trust-item p{
       margin:0;
       color:var(--muted);
       font-size:13px;
@@ -283,108 +313,63 @@
 
     .case p:last-child{ margin-bottom:0; }
 
+    /* ===== Отзывы ===== */
+    .reviews{
+      margin-top:18px;
+      padding:16px;
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .reviews h2{
+      margin:0 0 12px;
+      font-size:18px;
+    }
+
+    .review{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:12px 14px;
+      margin-bottom:10px;
+      box-shadow:0 8px 18px rgba(0,0,0,.06);
+    }
+
+    .review p{
+      margin:0 0 8px;
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    .review span{
+      font-size:12px;
+      color:var(--muted);
+    }
+
     /* ===== Фикс-панель кнопок ===== */
     .bottom-actions{
       position: fixed;
       left: 12px;
       right: 12px;
       bottom: 12px;
-
       display: grid;
       gap: 10px;
-
       padding: 10px;
       border-radius: 18px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.85);
       backdrop-filter: blur(10px);
       box-shadow: 0 14px 40px rgba(0,0,0,.12);
-
       z-index: 9999;
     }
 
-    /* чтобы на айфонах/телефонах кнопки не упирались в системную панель */
     @supports (padding: env(safe-area-inset-bottom)) {
       .bottom-actions{
         bottom: calc(12px + env(safe-area-inset-bottom));
       }
-    }/* ===== Почему мне доверяют ===== */
-.trust{
-  margin-top:18px;
-  padding:16px;
-  background:rgba(255,255,255,.65);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-
-.trust h2{
-  margin:0 0 12px;
-  font-size:18px;
-}
-
-.trust-grid{
-  display:grid;
-  gap:12px;
-}
-
-@media (min-width:600px){
-  .trust-grid{
-    grid-template-columns:1fr 1fr;
-  }
-
-.trust-item{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px 14px;
-}
-
-.trust-item b{
-  display:block;
-  margin-bottom:6px;
-}
-
-.trust-item p{
-  margin:0;
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.35;
-}
-  /* ===== Отзывы ===== */
-.reviews{
-  margin-top:18px;
-  padding:16px;
-  background:rgba(255,255,255,.65);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  box-shadow:var(--shadow);
-}
-
-.reviews h2{
-  margin:0 0 12px;
-  font-size:18px;
-}
-
-.review{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:12px 14px;
-  margin-bottom:10px;
-  box-shadow:0 8px 18px rgba(0,0,0,.06);
-}
-
-.review p{
-  margin:0 0 8px;
-  font-size:14px;
-  line-height:1.4;
-}
-
-.review span{
-  font-size:12px;
-  color:var(--muted);
-}
+    }
   </style>
 </head>
 
@@ -465,31 +450,34 @@
       <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
     </div>
   </div>
-<div class="trust">
-  <h2>Почему мне доверяют</h2>
 
-  <div class="trust-grid">
-    <div class="trust-item">
-      <b>Без воды</b>
-      <p>Только конкретные действия, цифры и понятный план.</p>
-    </div>
+  <!-- Почему мне доверяют -->
+  <div class="trust">
+    <h2>Почему мне доверяют</h2>
 
-    <div class="trust-item">
-      <b>Опора на аналитику</b>
-      <p>Решения на основе отчётов, карточек, рекламы и юнит-экономики.</p>
-    </div>
+    <div class="trust-grid">
+      <div class="trust-item">
+        <b>Без воды</b>
+        <p>Только конкретные действия, цифры и понятный план.</p>
+      </div>
 
-    <div class="trust-item">
-      <b>Быстрые улучшения</b>
-      <p>Первые результаты обычно видно уже в первые 7–14 дней.</p>
-    </div>
+      <div class="trust-item">
+        <b>Опора на аналитику</b>
+        <p>Решения на основе отчётов, карточек, рекламы и юнит-экономики.</p>
+      </div>
 
-    <div class="trust-item">
-      <b>Фокус на прибыль</b>
-      <p>Не “просто продажи”, а рост маржи и контроль расходов.</p>
+      <div class="trust-item">
+        <b>Быстрые улучшения</b>
+        <p>Первые результаты обычно видно уже в первые 7–14 дней.</p>
+      </div>
+
+      <div class="trust-item">
+        <b>Фокус на прибыль</b>
+        <p>Не “просто продажи”, а рост маржи и контроль расходов.</p>
+      </div>
     </div>
   </div>
-</div>
+
   <!-- Кейсы -->
   <div class="cases">
     <h2>Результаты клиентов</h2>
@@ -512,25 +500,26 @@
       <p>Вывели товар в ТОП и увеличили продажи в 4 раза</p>
     </div>
   </div>
+
   <!-- Отзывы -->
-<div class="reviews">
-  <h2>Отзывы клиентов</h2>
+  <div class="reviews">
+    <h2>Отзывы клиентов</h2>
 
-  <div class="review">
-    <p>“После аудита продажи выросли почти в 3 раза за месяц. Всё разложено по шагам, без воды.”</p>
-    <span>— Алексей, ниша: посуда</span>
-  </div>
+    <div class="review">
+      <p>“После аудита продажи выросли почти в 3 раза за месяц. Всё разложено по шагам, без воды.”</p>
+      <span>— Алексей, ниша: посуда</span>
+    </div>
 
-  <div class="review">
-    <p>“Реклама наконец вышла в плюс. До этого два месяца просто сливали бюджет.”</p>
-    <span>— Марина, ниша: косметика</span>
-  </div>
+    <div class="review">
+      <p>“Реклама наконец вышла в плюс. До этого два месяца просто сливали бюджет.”</p>
+      <span>— Марина, ниша: косметика</span>
+    </div>
 
-  <div class="review">
-    <p>“Карточку полностью переделали, товар зашёл в топ и начали идти стабильные заказы.”</p>
-    <span>— Игорь, ниша: одежда</span>
+    <div class="review">
+      <p>“Карточку полностью переделали, товар зашёл в топ и начали идти стабильные заказы.”</p>
+      <span>— Игорь, ниша: одежда</span>
+    </div>
   </div>
-</div>
 
   <!-- Telegram WebApp -->
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
@@ -539,15 +528,25 @@
     tg.ready();
 
     const SELLER_USERNAME = "gvozdev_vladislav";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyqOWc8riVxGGRTfrZm1zJTETKpsH0hr9x0pN29LkWFkARDCpGQ4CXAPVViFifRdSSC/exec";
 
-   function order(name){
-  const text = `Здравствуйте! Хочу заказать: ${name}`;
-  const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-  tg.openTelegramLink(link);
+    function sendLead(serviceName){
+      // В большинстве случаев Google Apps Script на другом домене режется CORS.
+      // Поэтому используем "no-cors" (запрос уйдёт, но ответ прочитать нельзя — и не нужно).
+      fetch(`${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}`, {
+        method: "GET",
+        mode: "no-cors"
+      }).catch(()=>{});
+    }
 
-  // отправка заявки в таблицу
-  fetch("https://script.google.com/macros/s/AKfycbyqOWc8riVxGGRTfrZm1zJTETKpsH0hr9x0pN29LkWFkARDCpGQ4CXAPVViFifRdSSC/exec?service=" + encodeURIComponent(name));
-}
+    function order(name){
+      const text = `Здравствуйте! Хочу заказать: ${name}`;
+      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+      tg.openTelegramLink(link);
+
+      // отправка заявки в таблицу
+      sendLead(name);
+    }
 
     function openManager(){
       const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
