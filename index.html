@@ -362,41 +362,37 @@
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP1mw0ovV1LAt1nutFfs-EFGEOCLOUliwf0fqlIIGb8DnIcHgjbvi-4ihkkigFlPiE/exec";
 
   function sendLead(serviceName){
-  const user = tg.initDataUnsafe && tg.initDataUnsafe.user
-    ? tg.initDataUnsafe.user
-    : null;
+    const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
 
-  const name = user
-    ? (user.first_name + " " + (user.last_name || "")).trim()
-    : "";
+    const name = u ? [u.first_name, u.last_name].filter(Boolean).join(" ") : "";
+    const username = (u && u.username) ? ("@" + u.username) : "";
+    const tg_id = (u && u.id) ? String(u.id) : "";
 
-  const username = user && user.username
-    ? "@" + user.username
-    : "";
+    const url =
+      `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}` +
+      `&name=${encodeURIComponent(name)}` +
+      `&tg_username=${encodeURIComponent(username)}` +
+      `&tg_id=${encodeURIComponent(tg_id)}` +
+      `&t=${Date.now()}`;
 
-  const tg_id = user && user.id
-    ? user.id
-    : "";
-
-  const url = `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}`
-    + `&name=${encodeURIComponent(name)}`
-    + `&tg_username=${encodeURIComponent(username)}`
-    + `&tg_id=${encodeURIComponent(tg_id)}`
-    + `&t=${Date.now()}`;
-
-  fetch(url, { method: "GET", mode: "no-cors" }).catch(()=>{});
-}
-
-
-
-
-  function order(name){
-    const text = `Здравствуйте! Хочу заказать: ${name}`;
-    const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-    tg.openTelegramLink(link);
-
-    sendLead(name);
+    // самый надежный способ отправки (без CORS и без ожидания ответа)
+    const img = new Image();
+    img.src = url;
   }
+
+  function order(serviceName){
+    // 1) сначала отправляем в таблицу
+    sendLead(serviceName);
+
+    // 2) затем открываем чат (даём 200мс, чтобы запрос успел уйти)
+    setTimeout(() => {
+      const text = `Здравствуйте! Хочу заказать: ${serviceName}`;
+      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+      tg.openTelegramLink(link);
+    }, 200);
+  }
+</script>
+
 
   function openManager(){
     const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
