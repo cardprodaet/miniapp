@@ -371,20 +371,14 @@
   }
 
   function sendLead(serviceName){
-    const u = getTgUser();
+  const user = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+  const name = user ? (user.first_name || "") : "";
 
-    const params = new URLSearchParams({
-      service: serviceName,
-      tg_id: String(u.id || ""),
-      tg_name: u.name || "",
-      tg_username: u.username || ""
-    });
+  const url = `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}&name=${encodeURIComponent(name)}&t=${Date.now()}`;
 
-    fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
-      method: "GET",
-      mode: "no-cors"
-    }).catch(()=>{});
-  }
+  fetch(url, { method: "GET", mode: "no-cors" }).catch(()=>{});
+}
+
 
   function order(name){
     const text = `Здравствуйте! Хочу заказать: ${name}`;
