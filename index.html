@@ -354,53 +354,61 @@
   </div>
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
+ <script>
+  const tg = window.Telegram.WebApp;
+  tg.ready();
 
-    const SELLER_USERNAME = "gvozdev_vladislav";
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP1mw0ovV1LAt1nutFfs-EFGEOCLOUliwf0fqlIIGb8DnIcHgjbvi-4ihkkigFlPiE/exec";
+  const SELLER_USERNAME = "gvozdev_vladislav";
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP1mw0ovV1LAt1nutFfs-EFGEOCLOUliwf0fqlIIGb8DnIcHgjbvi-4ihkkigFlPiE/exec";
+
+  function getTgUser(){
+    const u = tg?.initDataUnsafe?.user;
+    if (!u) return { id:"", name:"", username:"" };
+
+    const name = [u.first_name, u.last_name].filter(Boolean).join(" ");
+    const username = u.username ? ("@" + u.username) : "";
+    return { id: u.id || "", name, username };
+  }
 
   function sendLead(serviceName){
-  const img = new Image();
-  img.src = `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}&t=${Date.now()}`;
-}
+    const u = getTgUser();
 
+    const params = new URLSearchParams({
+      service: serviceName,
+      tg_id: String(u.id || ""),
+      tg_name: u.name || "",
+      tg_username: u.username || ""
+    });
 
-   function order(name){
-  // сначала отправляем заявку
-  sendLead(name);
+    fetch(`${GOOGLE_SCRIPT_URL}?${params.toString()}`, {
+      method: "GET",
+      mode: "no-cors"
+    }).catch(()=>{});
+  }
 
-  // небольшая пауза чтобы запрос ушёл
-  setTimeout(() => {
+  function order(name){
     const text = `Здравствуйте! Хочу заказать: ${name}`;
     const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
     tg.openTelegramLink(link);
-  }, 150);
-}
 
+    sendLead(name);
+  }
 
-function openManager(){
-  sendLead("Написать менеджеру");
-
-  setTimeout(() => {
+  function openManager(){
     const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
     const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
     tg.openTelegramLink(link);
-  }, 150);
-}
+  }
 
-function freeAudit(){
-  sendLead("Бесплатная диагностика");
-
-  setTimeout(() => {
-    const text = "Здравствуйте! Хочу бесплатную диагностику магазина WB/Ozon. Подскажите, пожалуйста, есть ли ещё места на этой неделе?";
+  function freeAudit(){
+    const text = "Здравствуйте! Хочу бесплатную диагностику магазина WB/Ozon.";
     const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
     tg.openTelegramLink(link);
-  }, 150);
-}
 
-  </script>
+    sendLead("Бесплатная диагностика");
+  }
+</script>
+
 
   <div class="bottom-actions">
     <button class="btn-secondary" onclick="openManager()">💬 Написать менеджеру</button>
