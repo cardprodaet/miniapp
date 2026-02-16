@@ -361,33 +361,44 @@
     const SELLER_USERNAME = "gvozdev_vladislav";
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP1mw0ovV1LAt1nutFfs-EFGEOCLOUliwf0fqlIIGb8DnIcHgjbvi-4ihkkigFlPiE/exec";
 
-    function sendLead(serviceName){
-      fetch(`${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}`, {
-        method: "GET",
-        mode: "no-cors"
-      }).catch(()=>{});
+   function sendLead(serviceName){
+  const img = new Image();
+  img.src = `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}&t=${Date.now()}`;
+     
     }
 
     function order(name){
-      sendLead(name);
-      const text = `Здравствуйте! Хочу заказать: ${name}`;
-      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-      tg.openTelegramLink(link);
-    }
+  // 1) отправили заявку
+  sendLead(name);
 
-    function openManager(){
-      sendLead("Написать менеджеру");
-      const text = "Здравствуйте! Хочу консультацию.";
-      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-      tg.openTelegramLink(link);
-    }
+  // 2) даём 150мс чтобы запрос точно ушёл
+  setTimeout(() => {
+    const text = `Здравствуйте! Хочу заказать: ${name}`;
+    const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+    tg.openTelegramLink(link);
+  }, 150);
+}
 
-    function freeAudit(){
-      sendLead("Бесплатная диагностика");
-      const text = "Здравствуйте! Хочу бесплатную диагностику.";
-      const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
-      tg.openTelegramLink(link);
-    }
+function openManager(){
+  sendLead("Написать менеджеру");
+
+  setTimeout(() => {
+    const text = "Здравствуйте! Хочу консультацию по маркетплейсам.";
+    const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+    tg.openTelegramLink(link);
+  }, 150);
+}
+
+function freeAudit(){
+  sendLead("Бесплатная диагностика");
+
+  setTimeout(() => {
+    const text = "Здравствуйте! Хочу бесплатную диагностику магазина WB/Ozon. Подскажите, пожалуйста, есть ли ещё места на этой неделе?";
+    const link = `https://t.me/${SELLER_USERNAME}?text=${encodeURIComponent(text)}`;
+    tg.openTelegramLink(link);
+  }, 150);
+}
+
   </script>
 
   <div class="bottom-actions">
