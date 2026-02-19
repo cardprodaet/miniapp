@@ -365,13 +365,13 @@
     const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
 
     const name = u ? [u.first_name, u.last_name].filter(Boolean).join(" ") : "";
-    const username = (u && u.username) ? ("@" + u.username) : "";
+    const username = (u && u.username) ? u.username : "";
     const tg_id = (u && u.id) ? String(u.id) : "";
 
     const url =
       `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}` +
       `&name=${encodeURIComponent(name)}` +
-      `&tg_username=${encodeURIComponent(username)}` +
+      `&username=${encodeURIComponent(username)}` +
       `&tg_id=${encodeURIComponent(tg_id)}` +
       `&t=${Date.now()}`;
 
