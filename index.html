@@ -220,6 +220,84 @@
       background: rgba(255,255,255,.9);
       box-shadow: 0 14px 40px rgba(0,0,0,.12);
     }
+    /* ===== Блок "Перезвоните мне" ===== */
+.callme-block{
+  margin-top:18px;
+  padding:16px;
+  background: rgba(255,255,255,.65);
+  border:1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.callme-block h2{ margin:0 0 8px; font-size:18px; }
+.callme-block p{ margin:0 0 12px; color:var(--muted); }
+
+/* ===== Модалка ===== */
+.modal{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.35);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:10000;
+}
+.modal.open{ display:flex; }
+
+.modal-card{
+  width:min(520px, 100%);
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+  padding:14px;
+}
+.modal-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:12px;
+}
+.modal-close{
+  width:auto;
+  padding:8px 10px;
+  border-radius:12px;
+  background:#fff;
+  border:1px solid var(--border);
+  color:var(--text);
+  box-shadow:none;
+}
+
+.field{ display:block; margin-bottom:12px; }
+.field span{ display:block; font-size:12px; color:var(--muted); margin-bottom:6px; }
+.field input, .field select{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  outline:none;
+  font-size:15px;
+}
+.field input:focus, .field select:focus{
+  border-color: rgba(46,166,255,.6);
+  box-shadow: 0 0 0 4px rgba(46,166,255,.12);
+}
+
+.modal-actions{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-top:6px;
+}
+
+.hint{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.35;
+}
   </style>
 </head>
 
@@ -295,10 +373,50 @@
       <button onclick="order('Сопровождение 30 дней — 29 900 ₽')">Записаться</button>
     </div>
    
-    <button class="btn" onclick="order('Перезвоните мне')">
-  Перезвоните мне
-</button>
+   
   </div>
+<!-- Блок "Перезвоните мне" -->
+<div class="callme-block">
+  <h2>Нужна быстрая консультация?</h2>
+  <p>Оставьте номер — перезвоню в удобное время.</p>
+  <button class="btn-accent" onclick="openCallModal()">📞 Перезвоните мне</button>
+</div>
+
+<!-- Модальное окно -->
+<div class="modal" id="callModal" aria-hidden="true">
+  <div class="modal-card">
+    <div class="modal-head">
+      <b>📞 Перезвонить вам</b>
+      <button class="modal-close" onclick="closeCallModal()">✕</button>
+    </div>
+
+    <label class="field">
+      <span>Номер телефона</span>
+      <input id="phoneInput" type="tel" placeholder="+7 (999) 123-45-67" autocomplete="tel" inputmode="tel">
+    </label>
+
+    <label class="field">
+      <span>Когда позвонить?</span>
+      <select id="timeSelect">
+        <option value="">Выберите время</option>
+        <option value="Сегодня, в ближайшее время">Сегодня, в ближайшее время</option>
+        <option value="Сегодня, 12:00–15:00">Сегодня, 12:00–15:00</option>
+        <option value="Сегодня, 15:00–18:00">Сегодня, 15:00–18:00</option>
+        <option value="Сегодня, 18:00–21:00">Сегодня, 18:00–21:00</option>
+        <option value="Завтра, 10:00–13:00">Завтра, 10:00–13:00</option>
+        <option value="Завтра, 13:00–16:00">Завтра, 13:00–16:00</option>
+        <option value="Завтра, 16:00–20:00">Завтра, 16:00–20:00</option>
+      </select>
+    </label>
+
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeCallModal()">Отмена</button>
+      <button onclick="submitCallRequest()">Отправить</button>
+    </div>
+
+    <p class="hint">Нажимая “Отправить”, вы соглашаетесь на обработку данных.</p>
+  </div>
+</div>
 
   <!-- Почему доверяют -->
   <div class="section">
@@ -365,24 +483,30 @@
   const SELLER_USERNAME = "gvozdev_vladislav";
   const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw-uzZX_2Yx_86j5RpBaTqZb8l5LAfHEUYqo6W6_Yzk-9dOPPbvVJBNCYaZntolRIm_/exec";
 
-  function sendLead(serviceName){
-    const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
+ function sendLead(serviceName, extra = {}) {
+  const u = (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) ? tg.initDataUnsafe.user : null;
 
-    const name = u ? [u.first_name, u.last_name].filter(Boolean).join(" ") : "";
-    const username = (u && u.username) ? u.username : "";
-    const tg_id = (u && u.id) ? String(u.id) : "";
+  const name = u ? [u.first_name, u.last_name].filter(Boolean).join(" ") : "";
+  const username = (u && u.username) ? ("@" + u.username) : "";
+  const tg_id = (u && u.id) ? String(u.id) : "";
 
-    const url =
-      `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}` +
-      `&name=${encodeURIComponent(name)}` +
-      `&username=${encodeURIComponent(username)}` +
-      `&tg_id=${encodeURIComponent(tg_id)}` +
-      `&t=${Date.now()}`;
+  const phone = extra.phone || "";
+  const call_time = extra.call_time || "";
 
-    // самый надежный способ отправки (без CORS и без ожидания ответа)
-    const img = new Image();
-    img.src = url;
-  }
+  const url =
+    `${GOOGLE_SCRIPT_URL}?service=${encodeURIComponent(serviceName)}` +
+    `&name=${encodeURIComponent(name)}` +
+    `&username=${encodeURIComponent(username)}` +
+    `&tg_id=${encodeURIComponent(tg_id)}` +
+    `&phone=${encodeURIComponent(phone)}` +
+    `&call_time=${encodeURIComponent(call_time)}` +
+    `&t=${Date.now()}`;
+
+  const img = new Image();
+  img.src = url;
+}
+
+
 
   function order(serviceName){
     // 1) сначала отправляем в таблицу
@@ -395,6 +519,38 @@
       tg.openTelegramLink(link);
     }, 200);
   }
+   function openCallModal(){
+  document.getElementById("callModal").classList.add("open");
+}
+
+function closeCallModal(){
+  document.getElementById("callModal").classList.remove("open");
+}
+
+function submitCallRequest(){
+  const phone = document.getElementById("phoneInput").value.trim();
+  const call_time = document.getElementById("timeSelect").value;
+
+  if(!phone){
+    alert("Введите номер телефона");
+    return;
+  }
+
+  if(!call_time){
+    alert("Выберите время звонка");
+    return;
+  }
+
+  sendLead("Перезвоните мне", {
+    phone: phone,
+    call_time: call_time
+  });
+
+  closeCallModal();
+
+  document.getElementById("phoneInput").value = "";
+  document.getElementById("timeSelect").value = "";
+}
 </script>
 
 
